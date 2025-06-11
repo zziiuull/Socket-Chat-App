@@ -13,6 +13,11 @@ public class ChatClient {
         BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
 
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Digite seu nome: ");
+        String username = userInput.readLine();
+        output.println("USERNAME:" + username);
+
         new Thread(() -> {
             try {
                 String msg;
@@ -24,8 +29,7 @@ public class ChatClient {
             }
         }).start();
 
-        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-        String userMsg;
+       String userMsg;
         while ((userMsg = userInput.readLine()) != null) {
             output.println(userMsg);
         }
