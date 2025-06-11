@@ -24,6 +24,7 @@ public class ChatServer {
     private static class ClientHandler extends Thread {
         private Socket socket;
         private PrintWriter out;
+        private String username;
 
         public ClientHandler(Socket socket) {
             this.socket = socket;
@@ -32,23 +33,33 @@ public class ChatServer {
         public void run() {
             try {
                 out = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(socket.getInputStream()));
+
+                String firstMessage = in.readLine();
+                if (firstMessage != null && firstMessage.startsWith("USERNAME:")) {
+                    username = firstMessage.substring(9).trim();
+                } else {
+                    username = "Desconhecido";
+                }
+
                 synchronized (clients) {
                     clients.add(out);
                 }
 
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(socket.getInputStream()));
+
 
                 String message;
                 while ((message = in.readLine()) != null) {
+                    String fullMessage = username + ": " + message;
                     synchronized (clients) {
                         for (PrintWriter writer : clients) {
-                            writer.println(message);
+                            writer.println(fullMessage);
                         }
                     }
                 }
             } catch (IOException e) {
-                System.out.println("Erro: " + e.getMessage());
+                System.out.println("Erro com usuário: " + username);
             } finally {
                 try {
                     socket.close();
