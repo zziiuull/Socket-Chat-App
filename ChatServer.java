@@ -45,6 +45,9 @@ public class ChatServer {
 
                 synchronized (clients) {
                     clients.add(out);
+                    for (PrintWriter writer : clients) {
+                        writer.println(username + " entrou no chat.");
+                    }
                 }
 
 
@@ -66,6 +69,9 @@ public class ChatServer {
                 } catch (IOException ignored) {}
                 synchronized (clients) {
                     clients.remove(out);
+                    for (PrintWriter writer : clients) {
+                        writer.println(username + " saiu do chat.");
+                    }
                 }
             }
         }
