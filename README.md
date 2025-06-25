@@ -12,11 +12,9 @@ Esse projeto foi realizado como parte da disciplina **Redes de computadores 1**,
 - Compile e rode o código de "ChatServer"
 ```
 java ClientServer.java
-java ClientServer.java
 ```
 - Compile e rode o código de "ChatClient"
 ```
-java ChatClient.java
 java ChatClient.java
 ```
 - É possível rodar apenas 1 instância de "ChatServer" enquanto é possível rodar mais de 1 instância de "ChatClient" ao mesmo tempo
