@@ -26,3 +26,6 @@ java ChatClient.java
 - [Henrique Shoji Kato](https://github.com/henriquekato)
 - [Luiz Henrique do Nascimento Silva](https://github.com/zziiuull)
 - [Thiago de Almeida Maciel](https://github.com/ThiagoDeAM)
+
+## Vídeo explicando o projeto
+[Link do vídeo explicando o projeto](https://drive.google.com/file/d/1POsx0ZG260RbXY6-cMSvUX-CMRNP40PY/view?usp=sharing)
